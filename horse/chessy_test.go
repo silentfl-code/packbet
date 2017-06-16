@@ -1,7 +1,6 @@
 package chessy
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -38,6 +37,22 @@ func Test_NotationToCoords(t *testing.T) {
 	}
 }
 
+func equal_moves(moves1, moves2 []string) bool {
+	moves := make(map[string]bool)
+	for _, move := range moves1 {
+		moves[move] = true
+	}
+
+	for _, move := range moves2 {
+		if _, ok := moves[move]; !ok {
+			return false
+		}
+		delete(moves, move)
+	}
+
+	return len(moves) == 0
+}
+
 func Test_HorseMoves(t *testing.T) {
 	tests := []struct {
 		coord  string
@@ -58,7 +73,7 @@ func Test_HorseMoves(t *testing.T) {
 	for i, test := range tests {
 		coord, _ := NotationToCoords(test.coord)
 		result := HorseMoves(coord)
-		if reflect.DeepEqual(result, test.result) {
+		if !equal_moves(result, test.result) {
 			t.Fatal("Wrong output for test #%d\n", i)
 		}
 	}

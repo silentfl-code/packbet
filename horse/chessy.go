@@ -35,7 +35,7 @@ func NotationToCoords(coords string) (c Coordinate, err error) {
 }
 
 func CoordsToNotation(c Coordinate) string {
-	return fmt.Sprintf("%c%d ", c.X+97, c.Y+1)
+	return fmt.Sprintf("%c%d", c.X+97, c.Y+1)
 }
 
 func HorseMoves(coords Coordinate) (res []string) {
