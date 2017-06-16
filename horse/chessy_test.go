@@ -74,7 +74,7 @@ func Test_HorseMoves(t *testing.T) {
 		coord, _ := NotationToCoords(test.coord)
 		result := HorseMoves(coord)
 		if !equal_moves(result, test.result) {
-			t.Fatal("Wrong output for test #%d\n", i)
+			t.Fatalf("Wrong output for test #%d\n", i)
 		}
 	}
 }
